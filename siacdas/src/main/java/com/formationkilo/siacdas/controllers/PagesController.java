@@ -3,6 +3,7 @@ package com.formationkilo.siacdas.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -11,11 +12,8 @@ public class PagesController {
 
 	@GetMapping("/")
 	//@ResponseBody
-	public String home(HttpServletRequest request, ModelMap modelMap) {
-		String param=request.getParameter("name");
-		String name=param!=null && 
-				!param.isEmpty()
-				?param:"Renseignez votre nom pour voir.";
+	public String home(@RequestParam(required=false ,defaultValue="Inconnu(e)")  String name, ModelMap modelMap) {
+		
 		        modelMap.put("name", name);
 		 return "pages/home";
 			
