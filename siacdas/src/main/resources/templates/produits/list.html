@@ -25,14 +25,16 @@ th:href="@{css/bootstrap.min.css}" />
                   <table class="table">
                   <thead>
                     <tr>
-                      <th>ID</th> <th>DESIGNATION</th> <th>PRIX</th> <th>QUANTITE</th><th>ACTION</th>
+                      <th>ID</th> <th>DESIGNATION</th> <th>PRIX</th> <th>QUANTITE</th><th>ACTION</th><th>ACTION</th>
                     </tr>
                    </thead>
                     <tbody>
                      <tr th:each="p:${list_produits}">
                      <td th:text="${p.id}">ID</td> <td th:text="${p.designation}">DESIGNATION</td> <td th:text="${p.prix}">PRIX</td> <td th:text="${p.quantite}">QUANTITE</td>
-                      <td><a th:href="@{delete(id=${p.id}, page=${pageCourante}, size=${size}, motCle=${motCle} )}">DELETE</a><td>
-                     </tr>
+                      <td><a onclick=" confirm('Etes-vous de supprimer ?')" th:href="@{delete(id=${p.id}, page=${pageCourante}, size=${size}, motCle=${motCle} )}">DELETE</a><td>
+                        <td><a th:href="@{edit(id=${p.id} )}">EDIT</a><td>
+                       
+                      <tr>
                      </tbody>
                      </table>
                      

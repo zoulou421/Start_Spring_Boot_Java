@@ -1,10 +1,16 @@
 package com.formationkilo.siacdas.controllers;
 
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,4 +50,37 @@ public class ProduitController {
 		
 	}
 	
+	@RequestMapping(value="/form", method=RequestMethod.GET)
+	public String ajouProduit(Model model) {
+        model.addAttribute("produit", new Produit());
+		return "produits/ajout";
+	}
+	
+	@RequestMapping(value="/save", method=RequestMethod.POST)
+	public String save(Model model, @Valid Produit produit, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			
+			System.out.println("################# Erreur récupérée ##########################"+bindingResult.hasErrors());
+			return "produits/ajout";
+		}
+			produitRepository.save(produit);
+			System.out.println("Aucune Erreur récupérée"+bindingResult.hasErrors());
+			return "produits/confirmation";
+		
+	}
+	
+	@RequestMapping(value="/edit", method=RequestMethod.GET)
+	public String edit(Model model, Long id) {
+		
+		Optional<Produit> p= produitRepository.findById(id);
+        model.addAttribute("produit",p);
+		return "produits/ajout";
+	}
+	
+	
+	@GetMapping("/")
+	public String home() {
+		 return "produits/layout";
+				
+	}
 }

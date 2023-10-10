@@ -4,16 +4,33 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 
 @Entity
 public class Produit implements Serializable{
     
-	@Id @GeneratedValue
+	/**
+	 *@author Bonevy BEBY 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id 
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotNull
+	@Size(min=4, max=55)
 	private String designation;
+	
+	@DecimalMin("100")
 	private double prix;
+	
 	private int quantite;
 	public Produit() {
 		super();
