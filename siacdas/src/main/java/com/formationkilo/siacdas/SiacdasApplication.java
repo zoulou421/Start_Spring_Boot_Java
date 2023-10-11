@@ -22,7 +22,7 @@ public class SiacdasApplication {
 		produitRepository.save(new Produit("Zara", 204,1900));
 		produitRepository.save(new Produit("JCN", 1000,1098));
 		produitRepository.save(new Produit("BEBY", 200,1000));*/
-	
+//lien template à mettre jour: https://ultraq.github.io/thymeleaf-layout-dialect/
 	produitRepository.findAll().forEach(p->System.out.println(p.getDesignation()));
 	}
 
