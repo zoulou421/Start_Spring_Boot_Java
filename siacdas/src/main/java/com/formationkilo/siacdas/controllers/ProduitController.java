@@ -26,7 +26,7 @@ public class ProduitController {
 	private ProduitRepository produitRepository;
 	
 	//@GetMapping("/")
-	@RequestMapping(value="/index")
+	@RequestMapping(value="/inscription")
 	public String index(Model model, 
 			@RequestParam(name="page", defaultValue="0")int p ,
 			@RequestParam(name="size", defaultValue="10")int s, 
